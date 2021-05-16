@@ -1,0 +1,144 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <mat-card class="mb-2"><mat-icon>settings</mat-icon>
+            <form (ngSubmit)="startSquareGame()" [formGroup]="setting">
+            <div class="row">
+                <div class="col-3">
+                    <mat-form-field  appearance="outline">
+                        <mat-label>Start Range</mat-label>
+                        <input formControlName="startRange" type="number" matInput required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field  appearance="outline">
+                        <mat-label>End Range</mat-label>
+                        <input formControlName="endRange" type="number" matInput required>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field  appearance="outline">
+                        <mat-label>Time in Seconds</mat-label>
+                        <input formControlName="time" type="number" matInput required >
+                    </mat-form-field>
+                </div>
+                <div class="col-3 mt-3">
+                    <button [disabled]="setting.invalid" mat-raised-button color="primary" type="submit">Start</button>
+                </div>
+            </div> 
+        </form>
+        </mat-card>
+        
+        <div class="row m-auto justify-content-around" *ngIf="startGame">
+            <div class="col-9 text-center">
+                <mat-card class="col-12">
+             <h1> <teximate #teximate [text]="randomNumber+''" [enter]="enterAnimation"></teximate></h1>
+                    <form (ngSubmit)="checkGivenAnswer();teximate.enterPlayer.play()">
+
+                    <mat-form-field  appearance="outline">
+                        <input [formControl]="answer" #val (keyup.space)="pauseTheTimer()" [placeholder]="'Square of '+randomNumber" cdkFocusInitial type="text" matInput>
+                    </mat-form-field>
+                    <small>Press Enter to Submit</small>
+                </form>
+
+                </mat-card>
+            </div>
+            <div class="col-3 text-center">
+                <div class="col-12 mt-5">
+                    <div class="orb timer-bg" (click)="pauseTheTimer()">
+                    <div class="text-white text-center">
+                        <p class="timer">00:{{timer>10?timer:'0'+timer}}</p>
+                        <!-- <span class="text-xs" style="opacity: 0.5;">Seconds</span> -->
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+         <div class="row mt-5" *ngIf="startGame">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                        <mat-icon>book</mat-icon>
+                    </div>
+                      <p class="card-category">Total</p>
+                      <h3 class="card-title">{{totalCount}}
+                          <!-- <small>GB</small> -->
+                      </h3>
+                  </div>
+                  <!-- <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons text-danger">warning</i>
+                          <a href="javascript:void(0)">Get More Space...</a>
+                      </div>
+                  </div> -->
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <mat-icon>assignment_turned_in</mat-icon>
+                      </div>
+                      <p class="card-category">Correct</p>
+                      <h3 class="card-title">{{correctCount}}</h3>
+                  </div>
+                  <!-- <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">date_range</i> Last 24 Hours
+                      </div>
+                  </div> -->
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <mat-icon>error</mat-icon>
+                      </div>
+                      <p class="card-category">Wrong</p>
+                      <h3 class="card-title">{{totalCount-correctCount}}</h3>
+                  </div>
+                  <!-- <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">local_offer</i> Tracked from Github
+                      </div>
+                  </div> -->
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-info card-header-icon">
+                      <div class="card-icon">
+                        <mat-icon>timeline</mat-icon>
+
+                      </div>
+                      <p class="card-category">Time</p>
+
+                      <h3 class="card-title">{{ currentTime}}</h3>
+                  </div>
+                  <!-- <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">update</i> Just Updated
+                      </div>
+                  </div> -->
+              </div>
+          </div>
+      </div>
+</div>
+
+
+
+<div id="overlay">
+    <div id="text">
+        {{gameWillStartInSeconds}}
+    </div>
+</div>
+
+<div class="overlay" id="pause">
+    <div id="text" (click)="pauseTheTimer()">
+        <mat-icon class="text-center" style="font-size: 4rem;"> pause_presentation</mat-icon>
+    </div>
+</div>
+

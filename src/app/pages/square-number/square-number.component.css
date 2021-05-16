@@ -1,0 +1,90 @@
+.orb {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 5em;
+  
+  animation: orb 1.8s infinite;
+  margin: 0 20px 0 0;
+
+  
+}
+
+
+.timer-bg{
+  cursor: pointer;
+  background: #f44337;
+  /* background-image: radial-gradient(farthest-corner at 34px 14px, #A2E6C9 25%, #1D8758 35%,  #D3FFEC 100%); */
+  box-shadow: 0 0 20px 5px #f44337;
+}
+.orb:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  top: 2px;
+  left: 2px;
+  /* background-image: radial-gradient(farthest-corner at 14px 14px, #fff 15%, #C0FFE4 50%, rgba(192,255,228,0) 100%); */
+  border-radius: 50%;
+}
+
+/* animates orb glow */
+@keyframes orb {
+  0%,
+  100% {
+    box-shadow: 0 0 5px 2px #fca6a1;
+  }
+  50% {
+    box-shadow: 0 0 24px 4px #fca6a1;
+  }
+}
+
+.timer{
+  padding-top: 2.2rem;
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+
+
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 250px;
+  color: white;
+  font-weight: bold;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+

@@ -1,0 +1,11 @@
+.square-guess{
+    width: auto;
+    height: 250px;
+    background-image: url('../../../assets/img/Square-Free-Number-2.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}

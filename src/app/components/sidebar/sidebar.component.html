@@ -1,0 +1,53 @@
+<div class="logo">
+    <div class="input-group" style="display: none;">
+        <input type="file" (change)="selectAvatar($event,fileUpload)" #fileUpload
+          accept="image/jpg, image/jpeg, image/png">
+      </div>
+    <div class="row cursor-pointer" (click)="fileUpload.click()">
+        <div class="col-12 text-center ">
+            <img class="avatar" [src]="avatar?this.avatar:'https://joeschmoe.io/api/v1/random'" alt="user" width="100px" height="100px">
+        </div>
+    </div>
+    <a href="https://linkedin.com/in/iTarunGM" class="simple-text">
+        Exam Aspirants
+    </a>
+    <div class="row justify-content-center">
+        <div class="col-12 text-center cursor-pointer">
+            <span (click)="editName()" class="text-secondary" *ngIf="!inputBox"> {{name}} <span>
+                    <mat-icon>edit</mat-icon>
+                </span></span>
+            <div *ngIf="inputBox" class="row justify-content-center">
+                <div class="col-10">
+
+                    <mat-form-field appearance="outline">
+                        <input [formControl]="givenName" #userName [placeholder]="name" cdkFocusInitial type="text"
+                            matInput>
+                        <mat-error>
+                            Provide Name
+                        </mat-error>
+                    </mat-form-field>
+
+
+                    <button mat-raised-button color="primary" type="submit" (click)="nameSubmitted()">
+                        <mat-icon>thumb_up</mat-icon>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="sidebar-wrapper">
+    <div *ngIf="isMobileMenu()">
+
+    </div>
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>
